@@ -31,7 +31,16 @@ print("\n===================================")
 print("          ANALYSIS RESULT")
 print("===================================")
 print(f"\nMatch Percentage: {match_percentage:.2f}%")
+print("\nRequired Skills:")
 
+if required_skills:
+
+    for skill in required_skills:
+        print("•", skill)
+
+else:
+
+    print("No recognized skills found.")
 print("\nMatching Skills:")
 
 if matching_skills:
