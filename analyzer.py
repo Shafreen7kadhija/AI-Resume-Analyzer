@@ -1,5 +1,33 @@
 import re
 
+def skill_exists(text, skill):
+
+    if skill == "c++":
+
+        return bool(re.search(r"(?<!\w)c\+\+(?!\w)", text))
+
+    if skill == "c":
+
+        return bool(re.search(r"(?<!\w)c(?!\w|\+\+)", text))
+
+    if skill == "javascript":
+
+        return bool(
+            re.search(r"(?<!\w)(javascript|js)(?!\w)", text)
+        )
+
+    if skill == "data structures":
+
+        return bool(
+            re.search(
+                r"(?<!\w)(data structures|dsa)(?!\w)",
+                text
+            )
+        )
+
+    pattern = r"(?<!\w)" + re.escape(skill) + r"(?!\w)"
+
+    return bool(re.search(pattern, text))
 
 def analyze_skills(resume, job_description):
 
@@ -29,16 +57,16 @@ def analyze_skills(resume, job_description):
 
     for skill in skills:
 
-        pattern = r"(?<!\w)" + re.escape(skill) + r"(?!\w)"
-
-        if re.search(pattern, job_text):
+        if skill_exists(job_text, skill):
 
             required_skills.append(skill)
 
-            if re.search(pattern, resume_text):
+            if skill_exists(resume_text, skill):
+
                 matching_skills.append(skill)
+
             else:
+
                 missing_skills.append(skill)
 
     return required_skills, matching_skills, missing_skills
-
