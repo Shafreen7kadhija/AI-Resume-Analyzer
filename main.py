@@ -23,14 +23,23 @@ if required_skills:
         len(matching_skills) / len(required_skills)
     ) * 100
 
+if match_percentage >= 80:
+
+    feedback = "Strong skill match!"
+
+elif match_percentage >= 50:
+
+    feedback = "Moderate skill match. Consider improving missing skills."
+
 else:
 
-    match_percentage = 0
+    feedback = "Needs improvement. Focus on the missing skills."
 
 print("\n===================================")
 print("          ANALYSIS RESULT")
 print("===================================")
 print(f"\nMatch Percentage: {match_percentage:.2f}%")
+print(f"Feedback: {feedback}")
 print("\nRequired Skills:")
 
 if required_skills:
